@@ -5,13 +5,15 @@ import numpy as np
 import chromadb
 from chromadb.config import Settings
 
-
 app = Flask(__name__)
 
 # Load the saved model
+
+
 model_antibacterial = joblib.load('antibacterial_model.joblib')
 model_antitumour    = joblib.load('antifungal_model.joblib')
 toxicity_model = joblib.load('toxicity_model.joblib')
+
 
 # Assume ConplexModel is used to generate embeddings
 embedding_model = ConplexModel()
@@ -29,7 +31,6 @@ def predict():
         return jsonify({'error': 'SMILES data should be a string'}), 400
 
     print("SMILES string:", smiles_string)
-
 
 
     try:
